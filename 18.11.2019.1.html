@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: Henny Penny;
+            text-align: center;
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        td{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            width: 20px;
+            height: 20px;
+            padding: 0px;
+            border-right: 1px solid blue;
+            border-bottom: 1px solid blue;
+        }
+        table{
+            font-size: 1px;
+            font-size: 1px;
+            border: 2px solid black;
+            margin: 0 auto;
+        }
+        @font-face {
+            font-family: 'Henny Penny';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Henny Penny'), local('HennyPenny-Regular'), url(https://fonts.gstatic.com/s/hennypenny/v7/wXKvE3UZookzsxz_kjGSfPQtvXI.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        input {
+            width:50px;
+            margin: 5px;
+        }
+        button {
+            font-family: Henny Penny;
+            border-radius: 50px;
+            background-color: white;
+            border: 1px solid black;
+            margin: 5px;
+        }
+        img {
+            margin: 0 auto;
+            width: 20px;
+            height: 20px;
+        }
+        .flo{
+            float: left;
+            width:100px;
+        }
+        #divv{
+            width: 200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false">
+    <script>
+        //generowanie ogólnego wyglądu strony
+        var div = document.createElement("div")
+        var el = document.createElement("p")
+        var el2 = document.createElement("p")
+        var tag = document.createElement("button");
+        div.innerHTML = "<label>Height</label><input type=\"text\" id=\"height\"/><br/><label>Width</label><input type=\"text\" id=\"width\"/><br/><label>Mines</label><input type=\"text\" id=\"mines\"/><br/>"
+        tag.innerHTML = "Generuj"
+        div.appendChild(tag)
+        document.body.appendChild(div)
+        var div2 = document.createElement("div")
+        var div3 = document.createElement("div")
+        var tablica = [];
+        var tabelka = [];
+        
+        //sprawdzanie czy podane wartości są liczbą
+        setInterval(function(){
+            if(isNaN(document.getElementById("height").value)){
+                document.getElementById("height").value = ""
+            }
+            if(isNaN(document.getElementById("width").value)){
+                document.getElementById("width").value = ""
+            }
+            if(isNaN(document.getElementById("mines").value)){
+                document.getElementById("mines").value = ""
+            }
+        }, 1000)
+
+        var x1 = document.cookie.split( "; ")
+        var x2 = []
+
+        for(var pp=0; pp<x1.length;pp++){
+            x2[pp] = []
+            x2[pp] = x1[pp].split("=")
+        }
+        x2 = x2.sort(compareSecondColumn);
+
+        function compareSecondColumn(a, b) {
+            if (a[1] === b[1]) {
+                return 0;
+            }
+            else {
+                return (a[1] < b[1]) ? -1 : 1;
+            }
+        }
+        console.log(x2)
+
+        var ppp = document.createElement("p")
+        var br = document.createElement("br")
+        document.body.append(div3)
+        div3.setAttribute("id", "divv")
+        if(x2.length>=10){
+            for(var ee=0; ee< 10;ee++){
+                div3.append(document.createElement("p"))
+                div3.append(document.createElement("p"))
+                document.getElementsByTagName("p")[(2*ee)].innerHTML = x2[ee][0]
+                document.getElementsByTagName("p")[(2*ee)].setAttribute("class", "flo")
+                document.getElementsByTagName("p")[(2*ee)+1].innerHTML = x2[ee][1]
+                document.getElementsByTagName("p")[(2*ee)+1].setAttribute("class", "flot")
+            }
+        } else {
+            for(var ee=0; ee< x2.length;ee++){
+                div3.append(document.createElement("p"))
+                div3.append(document.createElement("p"))
+                document.getElementsByTagName("p")[(2*ee)].innerHTML = x2[ee][0]
+                document.getElementsByTagName("p")[(2*ee)].setAttribute("class", "flo")
+                document.getElementsByTagName("p")[(2*ee)+1].innerHTML = x2[ee][1]
+                document.getElementsByTagName("p")[(2*ee)+1].setAttribute("class", "flot")
+            }
+        }
+
+        tag.onclick = function myTop(){
+            //ten if sprawdza czy wartości nie są puste
+            if(document.getElementById("mines").value==""||document.getElementById("width").value == ""||document.getElementById("height").value == ""){
+                window.alert("Uzupełnij wszystkie pola");
+            } else {
+            var name = window.prompt("Jaki chcesz mieć login?")
+            
+
+            //pobieranie wartość z inputów
+            var w = Number(document.getElementById("width").value)
+            var h = Number(document.getElementById("height").value)
+            var m = Number(document.getElementById("mines").value)
+            var q=0
+            
+            //czyszczenie dla ponownego generowania
+            div2.innerHTML = ""
+
+            //wstawianie pola na tabelę i pola "Grasz x[s]" i pola "Pozostało bomb:"
+            document.body.appendChild(div2)
+            var i = 0
+            div2.appendChild(el);
+            el.innerHTML = "Grasz: " 
+            div2.appendChild(el2);
+            el2.innerHTML
+            el2.innerHTML = "Pozostało bomb:"
+            var myVar = setInterval( myFun, 1000)
+
+            //czas
+            function myFun(){
+                el.innerHTML = "Grasz: "+i+"[s]"
+                i++
+                }
+            
+            createTabel()
+            
+            //czyszczenie tablicy
+            tablica = [];
+            tabelka = [];
+            //tworzenie tablicy dwuwymiarowej
+            for(var k=0; k<h; k++){
+                tablica[k] = []
+                tabelka[k] = []
+            }
+
+            //uzupełnianie tablicy 0
+            for(var k=0; k<h; k++){
+                for(var g=0; g<w; g++){
+                    tablica[k][g] = 0
+                }
+            }
+
+            randomBomb()
+
+            //generowanie tabelki z liczbami do wpisania
+            for(var k =0; k<h; k++){
+                for(var g=0; g<w; g++){
+                    var tes = 0
+                    if(tablica[k][g]==0){
+                        for(var y=-1; y<2; y++){
+                            if(k+y>-1&&k+y<h){
+                                for(var r=-1; r<2; r++){
+                                    if(g+r>-1&&g+r<w){
+                                        if(k==k+y&&g==g+r){
+                                            
+                                        } else {
+                                            tes = tes + tablica[k+y][g+r]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        tabelka[k][g] = tes
+                    }else{
+                        tabelka[k][g] = -1
+                    }
+                }
+            }
+
+            //losowanie bomb i wpisywanie do tablicy 1
+            function randomBomb(){
+                for(var k=0; k<m; k++){
+                    var q = (Math.floor(Math.random()*w*h))+1
+                    var a =  (q - (q % h)) / h 
+                    var b = q % h
+                    b--
+                    if(b==-1){
+                        b=h-1
+                        a--
+                        }
+                    if(tablica[a][b] == 1){
+                        k--
+                    } else {
+                        tablica[a][b] = 1
+                    }
+                }
+            }
+
+            //Tworzenie tabeli + zdarzenie click + zdarzenie contextmenu + funkcja dla contextmenu
+            function createTabel(){
+                var table = document.createElement("table")
+                div2.append(table)
+                for(var k=0; k<h; k++){
+                    var tr = document.createElement("tr")
+                    table.append(tr)
+                    for(var g=0;g<w; g++){
+                        var img = document.createElement("img")
+                        img.setAttribute("src", "img.png")
+                        img.setAttribute("id", "img"+k+g)
+                        img.addEventListener("click", function(){
+                            wl = this
+                            clicka(wl)
+                        }, false)
+                        img.addEventListener("contextmenu", function(){
+                            if(q==0){
+                                if(this.getAttribute("src")=="img.png"){
+                                    this.setAttribute("src", "flaga.png")
+                                } else if (this.getAttribute("src")=="flaga.png"){
+                                    this.setAttribute("src", "pytajnik.png")
+                                } else if (this.getAttribute("src")=="pytajnik.png"){
+                                    this.setAttribute("src", "img.png")
+                                }
+                                return true;
+                            }
+                        })
+                        var td = document.createElement("td")
+                        td.append(img)
+                        td.setAttribute("id", "td"+k+g)
+                        document.getElementsByTagName("tr")[k].append(td)
+                    }
+                }
+            }
+            
+            //zdarzenie click na kwadrat
+            function clicka(wl){
+                if(q==0){
+                    var f = wl.getAttribute("id").substr(3,1)
+                    var s = wl.getAttribute("id").substr(4,1)
+                    if(tablica[f][s]==1){
+                        wl.setAttribute("src", "bomba.png")
+                        for(var k=0; k<h; k++){
+                            for(var g=0; g<w; g++){
+                                if(tablica[k][g]==1){
+                                    document.getElementById("img"+k+g).setAttribute("src", "bomba.png")
+                                }
+                            }
+                        }
+                        clearInterval(myVar);
+                        setTimeout(function(){
+                            window.alert("przegrałeś")
+                        },10)
+                        
+                        q = 1
+                    }else if(tabelka[f][s]==0){
+                        wl.remove()
+                        zera(f,s)
+                    } else {
+                        wl.remove()
+                        document.getElementById("td"+f+s).innerHTML = tabelka[f][s]
+                    }
+            }
+
+            //autoodkrywanie zer
+            function zera(k,g){
+                k = parseInt(k, 10)
+                g = parseInt(g, 10)
+                if(tabelka[k][g]==0){
+                    for(var y=-1; y<2; y++){
+                        if(k+y>-1&&k+y<h){
+                            for(var r=-1; r<2; r++){
+                                if(g+r>-1&&g+r<w){
+                                    if(k==k+y&&g==g+r){
+                                        
+                                    } else {
+                                        if(tabelka[k+y][g+r]==0){
+                                            if(document.getElementById("img"+(k+y)+(g+r))){
+                                            document.getElementById("img"+(k+y)+(g+r)).remove();
+                                            zera((k+y), (g+r))
+                                            }
+                                        } else{
+                                            if(document.getElementById("img"+(k+y)+(g+r))){
+                                            document.getElementById("img"+(k+y)+(g+r)).remove();
+                                            document.getElementById("td"+(k+y)+(g+r)).innerHTML = tabelka[k+y][g+r]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+            //pozostało bomb
+            setInterval(function(){
+                var j = 0
+                var j2 = 0
+                var c2 = 0
+                for(var k2=0; k2<h; k2++){
+                    for(var g2=0; g2<w; g2++){
+                        if(document.getElementById("img"+k2+g2)){
+                            if(document.getElementById("img"+k2+g2).getAttribute("src")=="flaga.png"){
+                                j++
+                                el2.innerHTML = "Pozostało bomb: "+(m-j)
+                                if(tablica[k2][g2]==1){
+                                    j2++
+                                }
+                            }else if (tablica[k2][g2]==0){
+                                c2++
+                            }
+                        }
+                    }
+                }
+                if (j2==m||c2==0){
+                    clearInterval(myVar);
+                    setTimeout(function(){
+                    if(q==0){
+                        window.alert("wygrałeś!")
+                        q=1
+                        data = new Date()
+                        data.setTime(data.getTime()+1000*60*60*24*365*5)
+                        document.cookie = name+"="+(i-1)+"; expires="+data.toUTCString()
+                    }
+                    },1)
+                }
+            }, 1)
+            el2.innerHTML = "Pozostało bomb: "+m
+            //czyszczenie interwału przy ponownym kliknięciu
+            tag.onclick = function(){
+                clearInterval(myVar);
+                myTop();
+            }
+
+        }
+        }
+    </script>
+</body>
+</html>
